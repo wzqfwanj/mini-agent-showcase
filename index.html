@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>mini-agent · 桌面 AI Agent</title>
+    <meta
+      name="description"
+      content="mini-agent 是一个跑在桌面上的 AI 智能体：会话即工作空间，支持实时语音、工具调用与多会话并行。"
+    />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="nav">
+      <a class="brand" href="#top">
+        <span class="logo">●</span>
+        mini-agent
+      </a>
+      <nav>
+        <a href="#features">能力</a>
+        <a href="#architecture">架构</a>
+        <a href="#preview">界面</a>
+        <a href="#contact">试用</a>
+      </nav>
+      <a class="btn small" href="https://github.com/wzqfwanj" target="_blank" rel="noreferrer">GitHub</a>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="eyebrow">桌面 AI Agent · 私有项目</div>
+        <h1>把一句话，<br />变成真正做过的事</h1>
+        <p class="lead">
+          mini-agent 是一个跑在桌面上的 AI 智能体。每个会话就是独立的工作空间，模型可以读写文件、
+          执行命令、调用工具，也能用实时语音和你对话——而不只是聊天。
+        </p>
+        <div class="actions">
+          <a class="btn" href="#preview">查看界面</a>
+          <a class="btn ghost" href="#contact">申请演示</a>
+        </div>
+        <div class="shot hero-shot">
+          <img src="assets/screenshot-main.png" alt="mini-agent 主界面" />
+        </div>
+      </section>
+
+      <section id="features" class="section">
+        <h2>核心能力</h2>
+        <p class="section-lead">不是一个聊天框，而是一个能真正操作你电脑的 agent。</p>
+        <div class="grid">
+          <article class="card">
+            <div class="icon">▣</div>
+            <h3>会话即工作空间</h3>
+            <p>每个会话对应一个独立目录，读写文件、执行命令都限定在会话内，互不干扰。</p>
+          </article>
+          <article class="card">
+            <div class="icon">⇄</div>
+            <h3>统一入口</h3>
+            <p>文字和语音先进入 omni 路由：闲聊直接回答，任务自动委托给执行器完成。</p>
+          </article>
+          <article class="card">
+            <div class="icon">◉</div>
+            <h3>实时语音</h3>
+            <p>端到端语音对话，语义 VAD 自动断句，支持打断；语音和文字共享同一份上下文。</p>
+          </article>
+          <article class="card">
+            <div class="icon">❖</div>
+            <h3>多会话并行</h3>
+            <p>最多两个会话同时执行任务，随时切换查看，后台任务不会中断。</p>
+          </article>
+          <article class="card">
+            <div class="icon">⇩</div>
+            <h3>上下文导出</h3>
+            <p>一键把当前会话导出为 Markdown + JSON，包含对话、工具调用、统计与涉及文件。</p>
+          </article>
+          <article class="card">
+            <div class="icon">◈</div>
+            <h3>双模式</h3>
+            <p>通用模式与游戏开发模式，工具集和系统提示随模式切换。</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="architecture" class="section">
+        <h2>工作流程</h2>
+        <p class="section-lead">一个入口，两种结局：能聊，也能干活。</p>
+        <div class="flow">
+          <div class="flow-node">
+            <span>输入</span>
+            <small>文字 / 语音</small>
+          </div>
+          <div class="arrow">→</div>
+          <div class="flow-node accent">
+            <span>omni 路由</span>
+            <small>qwen3.5-omni</small>
+          </div>
+          <div class="arrow">→</div>
+          <div class="flow-branch">
+            <div class="flow-node">
+              <span>闲聊</span>
+              <small>直接回答</small>
+            </div>
+            <div class="flow-node">
+              <span>任务</span>
+              <small>delegate_task</small>
+            </div>
+          </div>
+          <div class="arrow">→</div>
+          <div class="flow-node accent">
+            <span>执行器</span>
+            <small>工具循环</small>
+          </div>
+          <div class="arrow">→</div>
+          <div class="flow-node">
+            <span>结果</span>
+            <small>汇报 / 继续</small>
+          </div>
+        </div>
+        <p class="note">
+          执行器在会话目录内循环调用工具：读文件、写文件、跑命令、抓网页。每一步都可以在界面上实时看到，
+          失败会如实上报，而不是假装成功。
+        </p>
+      </section>
+
+      <section id="preview" class="section">
+        <h2>界面预览</h2>
+        <div class="shots">
+          <figure>
+            <img src="assets/screenshot-settings.png" alt="模型设置" />
+            <figcaption>模型设置：Base URL、API 密钥、模型</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/screenshot-mode.png" alt="模式切换" />
+            <figcaption>顶部一键切换通用 / 游戏开发模式</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="stack" class="section">
+        <h2>技术栈</h2>
+        <div class="tags">
+          <span>Node.js</span>
+          <span>Electron</span>
+          <span>DeepSeek</span>
+          <span>Qwen-Omni Realtime</span>
+          <span>WebSocket</span>
+          <span>MCP</span>
+          <span>零构建前端</span>
+        </div>
+      </section>
+
+      <section id="contact" class="section contact">
+        <h2>想看看它怎么工作？</h2>
+        <p>
+          项目源码目前托管在私有仓库。需要演示、试用或交流实现思路，可以通过 GitHub 联系作者。
+        </p>
+        <a class="btn" href="https://github.com/wzqfwanj" target="_blank" rel="noreferrer">GitHub @wzqfwanj</a>
+      </section>
+    </main>
+
+    <footer>
+      <span>mini-agent</span>
+      <span>会话即工作空间</span>
+    </footer>
+  </body>
+</html>
