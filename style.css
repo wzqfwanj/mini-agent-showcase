@@ -271,6 +271,20 @@ h1 {
   font-size: 13.5px;
 }
 
+.video-wrap {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 30px 80px #00000066;
+}
+
+.video-wrap video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .shots {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
